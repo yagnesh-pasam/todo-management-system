@@ -4,7 +4,6 @@ const fastify = Fastify({
   logger: true,
 });
 
-// Declare a route
 fastify.get("/", async (request: FastifyRequest, reply: FastifyReply) => {
   reply.send({ hello: "world" });
 });

@@ -93,3 +93,18 @@ backend/
 ├── tsconfig.json
 └── README.md
 ```
+# 🧱 Naming Conventions
+
+To maintain consistency and readability across the backend codebase, follow the naming conventions below.
+
+| Entity Type      | Naming Style                | Example              |
+| ---------------- | --------------------------- | -------------------- |
+| **Folder name**      | lowercase                   | `controllers`        |
+| **File name**        | lowercase.dot-separated     | `user.controller.ts` |
+| **Class name**       | PascalCase                  | `UserController`     |
+| **Variable name**    | camelCase                   | `userName`           |
+| **Method name**      | camelCase                   | `getUserData()`      |
+| **Constant**         | UPPER_CASE_WITH_UNDERSCORES | `API_KEY`            |
+| **Interface / Type** | PascalCase                  | `User`, `UserRole`   |
+
+---
