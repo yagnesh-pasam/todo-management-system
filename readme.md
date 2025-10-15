@@ -1,68 +1,95 @@
-#todo-app_managemnt
+# todo-app_management — Backend (Fastify + TypeScript)
 
+A clean, modular, and production-ready backend for a **To-Do Management** application built with **TypeScript**, **Fastify**, **Postgres**, **TypeORM**, **AWS (S3 & SNS)**, and **Firebase**. Includes modern dev tooling (ESLint, Prettier, Husky + lint-staged), secure auth (bcrypt + JWT), and real-time push notifications.
+
+---
+
+## Table of contents
+
+1. [What is this](#what-is-this)
+2. [Tech stack](#tech-stack)
+3. [Features](#features)
+4. [Repository structure](#repository-structure)
+5. [Quickstart](#quickstart)
+6. [Environment variables](#environment-variables)
+7. [Scripts](#scripts)
+8. [Dev workflow & Git hooks](#dev-workflow--git-hooks)
+9. [Deployments](#deployments)
+10. [API overview](#api-overview)
+11. [Notes & recommendations](#notes--recommendations)
+12. [License](#license)
+
+---
+
+## What is this
+
+This backend provides RESTful endpoints to manage users, tasks and subtasks with the following concerns addressed:
+
+* Type-safe server with Fastify + TypeScript
+* Relational DB using PostgreSQL + TypeORM
+* File attachments uploaded to AWS S3 (secure access)
+* Push notifications via Firebase Cloud Messaging and AWS SNS (email)
+* Secure user authentication (bcrypt + JWT)
+* CI-friendly dev tooling (linters, formatters, pre-commit hooks)
+
+---
+
+## Tech stack
+
+* Language: **TypeScript**
+* Server: **Fastify**
+* Database: **PostgreSQL** (TypeORM)
+* File storage: **AWS S3**
+* Notifications: **Firebase Cloud Messaging**, **AWS SNS**
+* Dev tooling: **ESLint**, **Prettier**, **Husky**, **lint-staged**
+* Testing: your choice (Jest recommended)
+* Deployment: **AWS EC2** (or containerized solution)
+
+---
+
+## Features
+
+Core ToDo functionality:
+
+* User registration & login
+* Secure password storage (bcrypt)
+* JWT-based authentication (access & optional refresh tokens)
+* Create, read, update, delete tasks & subtasks
+* Task dates and history (created/updated timestamps)
+* Attach/Upload files (images, docs, PDFs) to tasks/subtasks — stored in S3
+* Filter tasks by status, dates or user
+* Push notifications when a task is created or updated (FCM + SNS)
+* Modular folder structure and separation of concerns (controllers/services/repositories)
+
+---
+
+## Repository structure
+
+(important folders shown — full tree in repo)
+
+```
 backend/
 ├── src/
-│   ├── config/               # Environment setup & configuration files
-│   │   ├── index.ts
-│   │   ├── db.config.ts      # Postgres/ORM connection setup
+│   ├── config/
+│   │   ├── db.config.ts
 │   │   ├── firebase.config.ts
 │   │   └── sns.config.ts
-│   │
-│   ├── app.ts                # Fastify instance, register routes/plugins
-│   ├── server.ts             # App startup file (entry point)
-│   │
-│   ├── routes/               # Route definitions (each route = one file)
-│   │   ├── index.ts          # Combines and exports all routes
-│   │   └── user.routes.ts
-│   │
-│   ├── controllers/          # Handle business logic for each route
-│   │   ├── user.controller.ts
-│   │   └── auth.controller.ts
-│   │
-│   ├── services/             # Core logic — interacts with repositories, external APIs
-│   │   ├── user.service.ts
-│   │   ├── auth.service.ts
-│   │   └── email.service.ts  # AWS SNS email logic
-│   │
-│   ├── repositories/         # Database access layer (ORM)
-│   │   ├── user.repository.ts
-│   │   └── base.repository.ts
-│   │
-│   ├── entities/             # ORM entities (models)
-│   │   ├── user.entity.ts
-│   │   └── index.ts
-│   │
-│   ├── utils/                # Helper functions (e.g., JWT, encryption)
-│   │   ├── logger.ts
-│   │   ├── jwt.ts
-│   │   └── responseHandler.ts
-│   │
-│   ├── middlewares/          # Fastify hooks or custom middlewares
-│   │   ├── auth.middleware.ts
-│   │   └── error.middleware.ts
-│   │
-│   ├── plugins/              # Fastify plugins registration (e.g., CORS, Swagger)
-│   │   ├── cors.plugin.ts
-│   │   ├── swagger.plugin.ts
-│   │   └── firebase.plugin.ts
-│   │
-│   ├── types/                # Global TS types/interfaces
-│   │   ├── index.d.ts
-│   │   └── user.type.ts
-│   │
-│   ├── constants/            # Common constants & enums
-│   │   ├── httpStatus.ts
-│   │   ├── messages.ts
-│   │   └── roles.ts
-│   │
-│   └── tests/                # Unit & integration tests
-│       ├── user.test.ts
-│       └── auth.test.ts
-│
-├── .env                      # Environment variables
-├── .env.example
-├── package.json
-├── tsconfig.json
+│   ├── app.ts
+│   ├── server.ts
+│   ├── routes/
+│   ├── controllers/
+│   ├── services/
+│   ├── repositories/
+│   ├── entities/
+│   ├── utils/
+│   ├── middlewares/
+│   ├── plugins/
+│   ├── types/
+│   ├── constants/
+│   └── tests/
 ├── .eslintrc.js
 ├── .prettierrc
+├── package.json
+├── tsconfig.json
 └── README.md
+```
