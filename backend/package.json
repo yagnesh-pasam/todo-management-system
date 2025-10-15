@@ -1,0 +1,27 @@
+{
+  "name": "todo-application",
+  "version": "1.0.0",
+  "description": "It's a practice product to get hands on into the stack",
+  "keywords": [
+    "fastify"
+  ],
+  "homepage": "https://github.com/yagnesh-pasam/todo-management-system#readme",
+  "bugs": {
+    "url": "https://github.com/yagnesh-pasam/todo-management-system/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yagnesh-pasam/todo-management-system.git"
+  },
+  "license": "ISC",
+  "author": "Yagnesh",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}
